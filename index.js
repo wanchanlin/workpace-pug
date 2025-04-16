@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path"); //needed when setting up static/file paths
 const sessions = require("express-session");
+const cors = require("cors"); //for cross-origin resource sharing
 
 const dotenv = require("dotenv");
 
@@ -18,6 +19,9 @@ app.set("view engine", "pug");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({
+  origin: "*", //allow all origins
+}))
 
 //set up folder for static files
 app.use(express.static(path.join(__dirname, "public")));
